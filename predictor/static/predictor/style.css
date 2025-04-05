@@ -1,0 +1,136 @@
+/* Global Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #1f1c2c, #928dab);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    transition: background 0.3s ease;
+}
+
+/* Glassmorphism Container */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    padding: 40px;
+    width: 100%;
+    max-width: 700px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    animation: fadeIn 1s ease-in;
+}
+
+/* Title */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #f9f9f9;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Textarea */
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    resize: none;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    backdrop-filter: blur(8px);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Button */
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+button:hover {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+/* Output Box */
+.output-box {
+    margin-top: 30px;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 16px;
+    line-height: 1.6;
+    animation: fadeInUp 0.7s ease-in-out;
+}
+
+/* Error Message Styling */
+.output-box p[style*="red"] {
+    color: #ff6b6b !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    textarea {
+        height: 100px;
+    }
+}
