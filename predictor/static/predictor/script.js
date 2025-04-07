@@ -40,14 +40,24 @@ function analyzeText() {
         return response.json();
     })
     .then(data => {
+        let genreTags = '';
+        if (data.recommended_genres && data.recommended_genres.length > 0) {
+            genreTags = `
+                <p><strong>Recommended Genres:</strong> 
+                    ${data.recommended_genres.map(genre => `<span class="genre-tag">${genre}</span>`).join(' ')}
+                </p>`;
+        }
+    
         outputDiv.innerHTML = `
             <p><strong>Message:</strong> ${data.message}</p>
             <p><strong>Mental Health Risk:</strong> ${data.mental_health_risk}</p>
             <p><strong>Conditions Flagged:</strong> ${data.conditions_flagged.join(", ")}</p>
             <p><strong>Emotion:</strong> ${data.emotion}</p>
+            ${genreTags}
         `;
         outputDiv.scrollIntoView({ behavior: "smooth" });
     })
+    
     .catch(error => {
         loader.style.display = 'none';
         outputDiv.innerHTML = `<p style="color:red;">Error processing the request.<br>${error}</p>`;

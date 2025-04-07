@@ -2,21 +2,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Health Predictor</title>
-    <link rel="stylesheet" href="{% static 'predictor/style.css' %}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mental Health Analyzer</title>
+    <link rel="stylesheet" href="{% static 'predictor/style.css' %}" />
+    <style>
+        /* Typing animation for header */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #fff;
+            width: 0;
+            animation: typing 2s steps(30, end) forwards, blink 0.8s infinite;
+            margin-bottom: 20px;
+        }
+
+        /* Floating label animation */
+        textarea:focus::placeholder {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Animated loader */
+        #loader {
+            font-size: 1rem;
+            color: #fff;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1 }
+            50% { opacity: 0.5 }
+            100% { opacity: 1 }
+        }
+
+        /* Output fade-in */
+        #output {
+            animation: fadeInUp 0.7s ease-in-out;
+        }
+
+        /* Slight glass + neumorphism for textarea */
+        textarea {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
+                        inset 0 0 8px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Button glow */
+        button:hover {
+            box-shadow: 0 0 10px #8e9eab, 0 0 20px #eef2f3;
+            transform: translateY(-1px);
+        }
+
+        /* Gradient animation background */
+        body {
+            background: linear-gradient(-45deg, #1f1c2c, #928dab, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Mental Health Prediction</h1>
+        <h1>Mental Health Analyzer 🧠</h1>
+        <p class="tagline">Understand your emotions. Empower your decisions.</p>
+
         <form id="analyze-form">
             {% csrf_token %}
-            <textarea id="prompt" placeholder="Enter your text..."></textarea>
+            <textarea id="prompt" placeholder="Type your thoughts here..." aria-label="Text for analysis"></textarea>
             <button type="button" onclick="analyzeText()">Analyze</button>
         </form>
 
-        <!-- Optional: Spinner while loading -->
         <div id="loader" style="display: none; margin-top: 15px;">🔄 Analyzing...</div>
 
         <div id="output" class="output-box"></div>
@@ -24,7 +96,17 @@
         <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
             Your mental health matters. You're not alone. ❤️
         </p>
+
+        <div class="recommend-btn-container">
+            <button onclick="window.location.href='/recommend/'">
+                🎥 Recommend Movies by Genre
+            </button>
+        </div>
     </div>
+
     <script src="{% static 'predictor/script.js' %}"></script>
+
+    <img src="{% static 'predictor/assets/ML_pro_logo.jpeg' %}" alt="Logo" class="floating-logo">
+
 </body>
 </html>
